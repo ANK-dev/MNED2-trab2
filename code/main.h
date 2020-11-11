@@ -6,7 +6,7 @@
 /*====================== Parâmetros a serem ajustados ========================*/
 
 #define Lx      100.0       /* Lx: comprimento do domínio (em m) */
-#define nx      50          /* nx: número de células */
+#define nx      100         /* nx: número de células */
 #define Delta_x (Lx/nx)     /* Δx: largura de cada célula (em m) */
 #define u_bar   0.2         /* ū: velocidade de escoamento (em m/s) */
 #define alpha   2.0e-4      /* α: coeficiente de difusão */
@@ -17,11 +17,11 @@
 /* Δt: passo de tempo (em segundos) */
 #define Delta_t (0.1 * (1/( (2*alpha)/(Delta_x*Delta_x) + u_bar/Delta_x ) ))
 
-#define A 0.0 /* verificar valores na apostila */
-#define B 0.0 /* verificar valores na apostila */
-#define C 0.0 /* verificar valores na apostila */
-#define D 0.0 /* verificar valores na apostila */
-#define E 0.0 /* verificar valores na apostila */
+#define A 150.0               /* verificar valores na apostila */
+#define B 0.001               /* verificar valores na apostila */
+#define C 4.5               /* verificar valores na apostila */
+#define D 6.5               /* verificar valores na apostila */
+#define E 1.0               /* verificar valores na apostila */
 
 /*============================================================================*/
 

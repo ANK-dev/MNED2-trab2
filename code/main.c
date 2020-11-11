@@ -92,6 +92,8 @@ void calculateQ_FTBS(double old[], double new[])
     int progress_incr = (t_final/Delta_t) * 5 / 100;
     double t = 0;
 
+    puts("Calculando FTBS...");
+
     while ( (t += Delta_t) <= t_final ) {
 
         /*************************************************************
@@ -140,6 +142,8 @@ void calculateQ_LF(double old[], double new[])
     int progress = 0, progress_count = 0;
     int progress_incr = (t_final/Delta_t) * 5 / 100;
     double t = 0;
+
+    puts("Calculando Lax-Friedrichs...");
 
     while ( (t += Delta_t) <= t_final ) {
 
@@ -204,6 +208,8 @@ void calculateQ_LW(double old[], double new[])
     int progress = 0, progress_count = 0;
     int progress_incr = (t_final/Delta_t) * 5 / 100;
     double t = 0;
+
+    puts("Calculando Lax-Wendroff...");
 
     while ( (t += Delta_t) <= t_final ) {
 
@@ -270,6 +276,8 @@ void calculateQ_BW(double old[], double new[])
     int progress = 0, progress_count = 0;
     int progress_incr = (t_final/Delta_t) * 5 / 100;
     double t = 0;
+    
+    puts("Calculando Beam-Warming...");
 
     while ( (t += Delta_t) <= t_final ) {
 
@@ -336,25 +344,22 @@ void calculateQ_BW(double old[], double new[])
 void printAndSaveResults(double arr[], int len, int method)
 {
     int i;
-    char filename[30];
+    char filename[50], file0[50], file1[50];
     FILE *results_file;     /* Ponteiro para o arquivo de resultados */
 
+    /* Prepara nome do arquivo de saída */
     switch (method) {
         case FTBS:
-            puts("Calculando FTBS...");
-            sprintf(filename, "%s %d %s", "results", method, ".txt");
+            snprintf(filename, 50, "%s%d%s", "results", method, ".txt");
             break;
         case LF:
-            puts("Calculando Lax-Friedrichs...");
-            sprintf(filename, "%s %d %s", "results", method, ".txt");
+            snprintf(filename, 50, "%s%d%s", "results", method, ".txt");
             break;
         case LW:
-            puts("Calculando Lax-Wendroff...");
-            sprintf(filename, "%s %d %s", "results", method, ".txt");
+            snprintf(filename, 50, "%s%d%s", "results", method, ".txt");
             break;
         case BW:
-            puts("Calculando Beam-Warming...");
-            sprintf(filename, "%s %d %s", "results", method, ".txt");
+            snprintf(filename, 50, "%s%d%s", "results", method, ".txt");
             break;
     }
 
@@ -367,10 +372,10 @@ void printAndSaveResults(double arr[], int len, int method)
 
     /* Error Handling -- Verifica se é possível criar/escrever o arquivo de
                          resultados */
-    if (   (results_file = fopen( 
-                strcat("./results/", filename), "w")   ) == NULL
-        && (results_file = fopen( 
-                strcat("./../results/", filename), "w")) == NULL) {
+    snprintf(file0, 50, "%s%s", "./results/", filename);
+    snprintf(file1, 50, "%s%s", "./../results/", filename);
+    if (   ( results_file = fopen(file0, "w") ) == NULL
+        && ( results_file = fopen(file1, "w") ) == NULL) {
         fprintf(stderr, "[ERR] Houve um erro ao escrever o arquivo \"%s\"! "
                         "Os resultados nao foram salvos.\n", filename);
         exit(1);
@@ -396,5 +401,5 @@ void printAndSaveResults(double arr[], int len, int method)
     fclose(results_file);   /* Fecha o arquivo */
 
     printf("[INFO] Os resultados foram salvos no arquivo \"%s\" "
-           "no diretorio \"results/\".", filename);
+           "no diretorio \"results/\".\n\n", filename);
 }
