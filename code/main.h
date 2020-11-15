@@ -5,23 +5,20 @@
 
 /*====================== Parâmetros a serem ajustados ========================*/
 
-#define Lx      100.0       /* Lx: comprimento do domínio (em m) */
-#define nx      100         /* nx: número de células */
+#define Lx      (12.0)        /* Lx: comprimento do domínio (em m) */
+#define nx      (200)         /* nx: número de células */
 #define Delta_x (Lx/nx)     /* Δx: largura de cada célula (em m) */
-#define u_bar   0.2         /* ū: velocidade de escoamento (em m/s) */
-#define alpha   2.0e-4      /* α: coeficiente de difusão */
-#define c_ini   1.0         /* concentração inicial nos volumes da malha */
-#define c_inj   1.5         /* concentração de injeção nos vol. da malha */
-#define t_final 300.0       /* tempo final da simulação (em segundos) */
+#define u_bar   (1.0)         /* ū: velocidade de escoamento (em m/s) */
+#define t_final (1.0)       /* tempo final da simulação (em segundos) */
 
 /* Δt: passo de tempo (em segundos) */
-#define Delta_t (0.1 * (1/( (2*alpha)/(Delta_x*Delta_x) + u_bar/Delta_x ) ))
+#define Delta_t (0.01) /* DESCOBRIR QUAL A CONDIÇÃO DE ESTABILIDADE!!! */
 
-#define A 150.0               /* verificar valores na apostila */
-#define B 0.001               /* verificar valores na apostila */
-#define C 4.5               /* verificar valores na apostila */
-#define D 6.5               /* verificar valores na apostila */
-#define E 1.0               /* verificar valores na apostila */
+#define A (200.0)
+#define B (1.0)
+#define C (4.5)
+#define D (6.5)
+#define E (1.0)
 
 /*============================================================================*/
 
