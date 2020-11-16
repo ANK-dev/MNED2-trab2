@@ -69,13 +69,13 @@ void initializeArray(double arr[], int len, double a, double b, double c,
      *                       { 0,    c.c.
      */
 
-    int i, x;
-    double s;
+    int i;
+    double x, s;
 
     for (i = 0; i < len; ++i) {
         x = i * Delta_x;
-        s = x >= c && x <= d ? e : 0;
-        arr[i] = exp(-a * ((x - b)*(x - b)) + s);
+        s = (x >= c && x <= d ? e : 0);
+        arr[i] = exp( -a * ((x - b)*(x - b)) ) + s;
     }
 }
 

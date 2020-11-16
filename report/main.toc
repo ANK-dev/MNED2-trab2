@@ -1,29 +1,37 @@
 \babel@toc {brazil}{}
 \contentsline {chapter}{\numberline {1}Resumo}{3}{}%
 \contentsline {chapter}{\numberline {2}Introdução}{4}{}%
-\contentsline {section}{\numberline {2.1}A Equação de Advecção-Difusão}{4}{}%
-\contentsline {section}{\numberline {2.2}Método dos Volumes Finitos}{5}{}%
-\contentsline {chapter}{\numberline {3}Metodologia}{8}{}%
-\contentsline {section}{\numberline {3.1}Condições Inicial e de Contorno}{8}{}%
-\contentsline {section}{\numberline {3.2}Consistência, Convergência e Estabilidade}{9}{}%
-\contentsline {subsection}{\numberline {3.2.1}Consistência}{9}{}%
-\contentsline {subsection}{\numberline {3.2.2}Convergência}{9}{}%
-\contentsline {subsection}{\numberline {3.2.3}Estabilidade}{10}{}%
-\contentsline {section}{\numberline {3.3}Programação}{11}{}%
-\contentsline {chapter}{\numberline {4}Resultados}{13}{}%
-\contentsline {section}{\numberline {4.1}Resultados para variações de $L_x$}{13}{}%
-\contentsline {section}{\numberline {4.2}Resultados para variações de $nx$}{16}{}%
-\contentsline {section}{\numberline {4.3}Resultados para variações de $\bar {u}$}{17}{}%
-\contentsline {section}{\numberline {4.4}Resultados para variações de $\alpha $}{18}{}%
-\contentsline {section}{\numberline {4.5}Resultados para $\bar {u}=0$ e variações de $\alpha $}{21}{}%
-\contentsline {section}{\numberline {4.6}Resultados para variações de $c_\text {ini}$}{23}{}%
-\contentsline {section}{\numberline {4.7}Resultados para variações de $c_\text {inj}$}{24}{}%
-\contentsline {section}{\numberline {4.8}Resultados para variações de $t_\text {final}$}{26}{}%
-\contentsline {chapter}{\numberline {5}Discussão}{29}{}%
-\contentsline {chapter}{\numberline {6}Conclusão}{30}{}%
-\contentsline {chapter}{\numberline {7}Referências Bibliográficas}{31}{}%
-\contentsline {chapter}{\numberline {8}Código Computacional}{32}{}%
-\contentsline {subsection}{\numberline {8.0.1}Código Principal (\texttt {main.h} \& \texttt {main.c})}{32}{}%
-\contentsline {subsubsection}{Arquivo \texttt {main.h}}{32}{}%
-\contentsline {subsubsection}{Arquivo \texttt {main.c}}{32}{}%
-\contentsline {subsection}{\numberline {8.0.2}Código do Gráfico (\texttt {plot\_graph.py})}{35}{}%
+\contentsline {section}{\numberline {2.1}A Equação de Advecção}{4}{}%
+\contentsline {section}{\numberline {2.2}Método dos Volumes Finitos}{4}{}%
+\contentsline {chapter}{\numberline {3}Metodologia}{5}{}%
+\contentsline {section}{\numberline {3.1}Condições Inicial e de Contorno}{5}{}%
+\contentsline {section}{\numberline {3.2}Métodos Numéricos}{5}{}%
+\contentsline {subsection}{\numberline {3.2.1}Métodos \textit {Upwind}}{6}{}%
+\contentsline {subsubsection}{Forward Time-Backward Space (FTBS)}{6}{}%
+\contentsline {subsection}{\numberline {3.2.2}Métodos de Alta Resolução}{6}{}%
+\contentsline {subsubsection}{Lax-Friedrichs (L-F)}{6}{}%
+\contentsline {subsubsection}{Lax-Wendroff (L-W)}{6}{}%
+\contentsline {subsubsection}{Beam-Warming (B-W)}{7}{}%
+\contentsline {section}{\numberline {3.3}Estabilidade}{7}{}%
+\contentsline {section}{\numberline {3.4}Programação}{8}{}%
+\contentsline {chapter}{\numberline {4}Resultados}{10}{}%
+\contentsline {section}{\numberline {4.1}Forward Time-Backward Space (FTBS)}{10}{}%
+\contentsline {subsection}{\numberline {4.1.1}Resultados para variações de $nx$}{10}{}%
+\contentsline {subsection}{\numberline {4.1.2}Resultados para variações de $t_{\text {final}}$}{12}{}%
+\contentsline {section}{\numberline {4.2}Lax-Friedrichs (L-F)}{13}{}%
+\contentsline {subsection}{\numberline {4.2.1}Resultados para variações de $nx$}{13}{}%
+\contentsline {subsection}{\numberline {4.2.2}Resultados para variações de $t_{\text {final}}$}{15}{}%
+\contentsline {section}{\numberline {4.3}Lax-Wendroff (L-W)}{16}{}%
+\contentsline {subsection}{\numberline {4.3.1}Resultados para variações de $nx$}{16}{}%
+\contentsline {subsection}{\numberline {4.3.2}Resultados para variações de $t_{\text {final}}$}{18}{}%
+\contentsline {section}{\numberline {4.4}Beam-Warming (B-W)}{19}{}%
+\contentsline {subsection}{\numberline {4.4.1}Resultados para variações de $nx$}{19}{}%
+\contentsline {subsection}{\numberline {4.4.2}Resultados para variações de $t_{\text {final}}$}{21}{}%
+\contentsline {chapter}{\numberline {5}Discussão}{23}{}%
+\contentsline {chapter}{\numberline {6}Conclusão}{24}{}%
+\contentsline {chapter}{\numberline {7}Referências Bibliográficas}{25}{}%
+\contentsline {chapter}{\numberline {8}Código Computacional}{26}{}%
+\contentsline {subsection}{\numberline {8.0.1}Código Principal (\texttt {main.h} \& \texttt {main.c})}{26}{}%
+\contentsline {subsubsection}{Arquivo \texttt {main.h}}{26}{}%
+\contentsline {subsubsection}{Arquivo \texttt {main.c}}{26}{}%
+\contentsline {subsection}{\numberline {8.0.2}Código do Gráfico (\texttt {plot\_graph.py})}{29}{}%
