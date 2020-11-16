@@ -3,22 +3,21 @@
  *                          Ariel Nogueira Kovaljski                          *
  ******************************************************************************/
 
-/*====================== Parâmetros a serem ajustados ========================*/
+/*======================= Parâmetros a serem ajustados =======================*/
 
-#define Lx      (10.0)              /* Lx: comprimento do domínio (em m) */
-#define nx      (200)               /* nx: número de células */
-#define Delta_x (Lx/nx)             /* Δx: largura de cada célula (em m) */
-#define u_bar   (2.0)               /* ū: velocidade de escoamento (em m/s) */
-#define t_final (1.0)               /* tempo final da simulação (em segundos) */
+#define Lx      (10.0)              /* Lx: comprimento do domínio (em m)      */
+#define nx      (200)               /* nx: número de células                  */
+#define Delta_x (Lx/nx)             /* Δx: largura de cada célula (em m)      */
+#define u_bar   (2.0)               /* ū: velocidade de escoamento (em m/s)   */
+#define t_final (1.0/3)             /* tempo final da simulação (em segundos) */
 
 #define Delta_t (0.9*Delta_x/u_bar) /* Δt: passo de tempo (em segundos) */
 
-/* Parâmetros da condição inicial */
-#define A (100.0)
-#define B (1.5)
-#define C (4.0)
-#define D (6.0)
-#define E (2.0)
+#define A (100.0)                   /*                                */
+#define B (1.5)                     /*                                */
+#define C (4.0)                     /* Parâmetros da condição inicial */
+#define D (6.0)                     /*                                */
+#define E (2.0)                     /*                                */
 
 /*============================================================================*/
 

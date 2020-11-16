@@ -14,8 +14,9 @@ int main(void)
     double Q_new[nx];   /* Array de Q no tempo n+1 */
     double Q_old[nx];   /* Array de Q no tempo n */
 
-    puts("\nMNED II - Trabalho 2\n====================");
-    puts("por Ariel Nogueira Kovaljski\n");
+    puts("MNED II - Trabalho 2\n"
+         "====================\n"
+         "por Ariel Nogueira Kovaljski\n");
 
     listParameters();
 
@@ -50,10 +51,10 @@ void listParameters()
 {
     puts("Parametros\n----------");
     puts("Constantes da equacao:");
-    printf("Delta_t = %f, Delta_x = %f, u_bar = %3.2e",
+    printf("Delta_t = %f, Delta_x = %f, u_bar = %3.2e\n\n",
            Delta_t, Delta_t, u_bar);
     puts("Constantes da simulacao:");
-    printf("nx = %d, t_final = %f", nx, t_final);
+    printf("nx = %d, t_final = %f\n\n", nx, t_final);
 }
 
 /* Inicializa um array para um valor de entrada */
@@ -85,7 +86,7 @@ void calculateQ_FTBS(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5 / 100;
+    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
     double t = 0;
 
     puts("Calculando FTBS...");
@@ -138,7 +139,7 @@ void calculateQ_LF(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5 / 100;
+    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
     double t = 0;
 
     puts("Calculando Lax-Friedrichs...");
@@ -209,7 +210,7 @@ void calculateQ_LW(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5 / 100;
+    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
     double t = 0;
 
     puts("Calculando Lax-Wendroff...");
@@ -280,7 +281,7 @@ void calculateQ_BW(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5 / 100;
+    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
     double t = 0;
     
     puts("Calculando Beam-Warming...");

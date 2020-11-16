@@ -52,17 +52,24 @@ e para o contorno direito,
 \end{equation}
 
 \section{Métodos Numéricos}
-Os métodos numéricos utilizados para a resolução da equação de advecção podem
-ser divididos em duas categorias: métodos \textit{upwind} e métodos de alta
-resolução.
+Os métodos numéricos utilizados para a resolução da equação de advecção são
+diversos. Nesta seção serão tratados os quatro métodos utilizados neste
+trabalho.
 
 \subsection{Métodos \textit{Upwind}}
-<inserir descrição sobre upwind>. O método \textit{upwind} escolhido para a
-resolução da equação da advecção é o \textit{forward time-backward space}
+Problemas hiperbólicos, como a equação da advecção, possuem informação (ondas)
+que se propagam com uma velocidade e sentido característico. A utilização de
+métodos \textit{upwind} leva em conta essa característica, permitindo uma
+modelagem mais acurada do fenômeno tratado. O método \textit{upwind} escolhido
+para a resolução da equação da advecção é o \textit{forward time-backward space}
 (FTBS).
 
 \subsubsection{Forward Time-Backward Space (FTBS)}
-O FTBS <inserir explicação sobre FTBS>. Sua discretização é:
+O FTBS trata da ideia de que, para a equação da advecção unidimensional, há
+apenas uma única onda que se propaga. O método \textit{upwind} determina o
+valor de $Q_i^{n+1}$, onde, para um $\bar{u} > 0$, resulta em um fluxo da
+esquerda para a direita, de forma que a concentração de cada volume $Q_i^{n+1}$
+depende dos volumes atual $Q_i^n$ e anterior $Q_{i-1}^n$. Sua discretização é:
 \begin{equation}\label{FTBS}
     Q_i^{n+1} = Q_i^n - \frac{\bar{u}\Delta t}{\Delta x} \left(
         Q_i^n - Q_{i-1}^n
@@ -82,12 +89,7 @@ malha (contorno direito) no método FTBS não necessita do volume fantasma, pois
 depende apenas do elemento atual $Q_i^n$ e do anterior $Q_{i-1}^n$, portanto, a
 Eq.\ \ref{FTBS} aplica-se ao contorno direito.
 
-\subsection{Métodos de Alta Resolução}
-<inserir descrição sobre métodos de alta resolução>. Os métodos escolhidos para
-a resolução da equação da advecção são o Lax-Friedrichs (L-F), Lax-Wendroff
-(L-W) e Beam-Warming (B-W).
-
-\subsubsection{Lax-Friedrichs (L-F)}
+\subsection{Lax-Friedrichs (L-F)}
 Para Lax-Friedrichs (L-F), tem-se a seguinte discretização
 \begin{equation}\label{L-F}
     Q_i^{n+1} = \frac{Q_{i+1}^n + Q_{i-1}^n}{2}
@@ -99,7 +101,7 @@ aplicando as condições de contorno, obtém-se,
 \begin{equation}
     Q_1^{n+1} = \frac{Q_2^n + Q_1^n}{2}
     - \frac{\bar{u}\Delta t}{2\Delta x}\left(
-        Q_2^n - Q_1^n
+    Q_2^n - Q_1^n
     \right)
 \end{equation}
 para o primeiro elemento da malha (contorno esquerdo). Enquanto para o último
@@ -107,9 +109,17 @@ elemento da malha (contorno direito), obtém-se,
 \begin{equation}
     Q_{nx}^{n+1} = \frac{Q_{nx}^n + Q_{nx-1}^n}{2}
     - \frac{\bar{u}\Delta t}{2\Delta x}\left(
-        Q_{nx}^n - Q_{nx-1}^n
+    Q_{nx}^n - Q_{nx-1}^n
     \right)
 \end{equation}
+
+\subsection{Métodos de Alta Resolução}
+A utilização de métodos \textit{upwind} de primeira ordem, apesar de simples,
+acaba por introduzir significativa difusão numérica, impactando negativamente a
+acurácia da solução. Os métodos de alta resolução introduzem um termo
+corretivo, de maneira a minimizar a influência da difusão numérica sobre o
+resultado final. Os métodos de alta resolução escolhidos para a resolução da
+equação da advecção são o Lax-Wendroff (L-W) e Beam-Warming (B-W).
 
 \subsubsection{Lax-Wendroff (L-W)}
 Para Lax-Wendroff (L-W), tem-se a seguinte discretização

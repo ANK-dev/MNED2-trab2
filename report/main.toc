@@ -8,30 +8,30 @@
 \contentsline {section}{\numberline {3.2}Métodos Numéricos}{5}{}%
 \contentsline {subsection}{\numberline {3.2.1}Métodos \textit {Upwind}}{6}{}%
 \contentsline {subsubsection}{Forward Time-Backward Space (FTBS)}{6}{}%
-\contentsline {subsection}{\numberline {3.2.2}Métodos de Alta Resolução}{6}{}%
-\contentsline {subsubsection}{Lax-Friedrichs (L-F)}{6}{}%
-\contentsline {subsubsection}{Lax-Wendroff (L-W)}{6}{}%
+\contentsline {subsection}{\numberline {3.2.2}Lax-Friedrichs (L-F)}{6}{}%
+\contentsline {subsection}{\numberline {3.2.3}Métodos de Alta Resolução}{6}{}%
+\contentsline {subsubsection}{Lax-Wendroff (L-W)}{7}{}%
 \contentsline {subsubsection}{Beam-Warming (B-W)}{7}{}%
 \contentsline {section}{\numberline {3.3}Estabilidade}{7}{}%
 \contentsline {section}{\numberline {3.4}Programação}{8}{}%
-\contentsline {chapter}{\numberline {4}Resultados}{10}{}%
-\contentsline {section}{\numberline {4.1}Forward Time-Backward Space (FTBS)}{10}{}%
-\contentsline {subsection}{\numberline {4.1.1}Resultados para variações de $nx$}{10}{}%
-\contentsline {subsection}{\numberline {4.1.2}Resultados para variações de $t_{\text {final}}$}{12}{}%
-\contentsline {section}{\numberline {4.2}Lax-Friedrichs (L-F)}{13}{}%
-\contentsline {subsection}{\numberline {4.2.1}Resultados para variações de $nx$}{13}{}%
-\contentsline {subsection}{\numberline {4.2.2}Resultados para variações de $t_{\text {final}}$}{15}{}%
-\contentsline {section}{\numberline {4.3}Lax-Wendroff (L-W)}{16}{}%
-\contentsline {subsection}{\numberline {4.3.1}Resultados para variações de $nx$}{16}{}%
-\contentsline {subsection}{\numberline {4.3.2}Resultados para variações de $t_{\text {final}}$}{18}{}%
-\contentsline {section}{\numberline {4.4}Beam-Warming (B-W)}{19}{}%
-\contentsline {subsection}{\numberline {4.4.1}Resultados para variações de $nx$}{19}{}%
-\contentsline {subsection}{\numberline {4.4.2}Resultados para variações de $t_{\text {final}}$}{21}{}%
-\contentsline {chapter}{\numberline {5}Discussão}{23}{}%
-\contentsline {chapter}{\numberline {6}Conclusão}{24}{}%
-\contentsline {chapter}{\numberline {7}Referências Bibliográficas}{25}{}%
-\contentsline {chapter}{\numberline {8}Código Computacional}{26}{}%
-\contentsline {subsection}{\numberline {8.0.1}Código Principal (\texttt {main.h} \& \texttt {main.c})}{26}{}%
-\contentsline {subsubsection}{Arquivo \texttt {main.h}}{26}{}%
-\contentsline {subsubsection}{Arquivo \texttt {main.c}}{26}{}%
-\contentsline {subsection}{\numberline {8.0.2}Código do Gráfico (\texttt {plot\_graph.py})}{29}{}%
+\contentsline {chapter}{\numberline {4}Resultados}{11}{}%
+\contentsline {section}{\numberline {4.1}Forward Time-Backward Space (FTBS)}{11}{}%
+\contentsline {subsection}{\numberline {4.1.1}Resultados para variações de $nx$}{11}{}%
+\contentsline {subsection}{\numberline {4.1.2}Resultados para variações de $t_{\text {final}}$}{13}{}%
+\contentsline {section}{\numberline {4.2}Lax-Friedrichs (L-F)}{15}{}%
+\contentsline {subsection}{\numberline {4.2.1}Resultados para variações de $nx$}{15}{}%
+\contentsline {subsection}{\numberline {4.2.2}Resultados para variações de $t_{\text {final}}$}{17}{}%
+\contentsline {section}{\numberline {4.3}Lax-Wendroff (L-W)}{19}{}%
+\contentsline {subsection}{\numberline {4.3.1}Resultados para variações de $nx$}{19}{}%
+\contentsline {subsection}{\numberline {4.3.2}Resultados para variações de $t_{\text {final}}$}{21}{}%
+\contentsline {section}{\numberline {4.4}Beam-Warming (B-W)}{23}{}%
+\contentsline {subsection}{\numberline {4.4.1}Resultados para variações de $nx$}{23}{}%
+\contentsline {subsection}{\numberline {4.4.2}Resultados para variações de $t_{\text {final}}$}{25}{}%
+\contentsline {chapter}{\numberline {5}Discussão}{28}{}%
+\contentsline {chapter}{\numberline {6}Conclusão}{29}{}%
+\contentsline {chapter}{\numberline {7}Referências Bibliográficas}{30}{}%
+\contentsline {chapter}{\numberline {8}Código Computacional}{31}{}%
+\contentsline {subsection}{\numberline {8.0.1}Código Principal (\texttt {main.h} \& \texttt {main.c})}{31}{}%
+\contentsline {subsubsection}{Arquivo \texttt {main.h}}{31}{}%
+\contentsline {subsubsection}{Arquivo \texttt {main.c}}{31}{}%
+\contentsline {subsection}{\numberline {8.0.2}Código do Gráfico (\texttt {plot\_graph.py})}{38}{}%

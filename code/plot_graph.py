@@ -69,8 +69,8 @@ def data_extract(f, x, y):
 
 
 def plot_graph(x, y, id):
-    methods = {0: 'FTBS', 1: 'Lax-Friedrichs', 2: 'Lax-Wendroff', 3: 'Beam-Warming'}
-    colors  = {0: 'red',  1: 'green',          2: 'blue',         3: 'yellow'}
+    methods = {0:'FTBS', 1:'Lax-Friedrichs', 2:'Lax-Wendroff', 3:'Beam-Warming'}
+    colors  = {0: 'red', 1: 'green',         2: 'blue',        3: 'yellow'}
     fig,ax  = plt.subplots()
     fig.set_size_inches(8, 7)
     ax.grid(True)
