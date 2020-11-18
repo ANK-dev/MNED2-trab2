@@ -11,8 +11,8 @@
 
 int main(void)
 {
-    double Q_new[nx];   /* Array de Q no tempo n+1 */
-    double Q_old[nx];   /* Array de Q no tempo n */
+    double Q_new[NX];   /* Array de Q no tempo n+1 */
+    double Q_old[NX];   /* Array de Q no tempo n */
 
     puts("MNED II - Trabalho 2\n"
          "====================\n"
@@ -21,28 +21,28 @@ int main(void)
     listParameters();
 
     /* Cálculo de Q via método Forward Time-Backward Space (FTBS) */
-    initializeArray(Q_old, nx, A, B, C, D, E);
-    initializeArray(Q_new, nx, A, B, C, D, E);
+    initializeArray(Q_old, NX, A, B, C, D, E);
+    initializeArray(Q_new, NX, A, B, C, D, E);
     calculateQ_FTBS(Q_old, Q_new);
-    printAndSaveResults(Q_new, nx, FTBS);
+    printAndSaveResults(Q_new, NX, FTBS);
 
     /* Cálculo de Q via método Lax-Friedrichs */
-    initializeArray(Q_old, nx, A, B, C, D, E);
-    initializeArray(Q_new, nx, A, B, C, D, E);
+    initializeArray(Q_old, NX, A, B, C, D, E);
+    initializeArray(Q_new, NX, A, B, C, D, E);
     calculateQ_LF(Q_old, Q_new);
-    printAndSaveResults(Q_new, nx, LF);
+    printAndSaveResults(Q_new, NX, LF);
 
     /* Cálculo de Q via método Lax-Wendroff */
-    initializeArray(Q_old, nx, A, B, C, D, E);
-    initializeArray(Q_new, nx, A, B, C, D, E);
+    initializeArray(Q_old, NX, A, B, C, D, E);
+    initializeArray(Q_new, NX, A, B, C, D, E);
     calculateQ_LW(Q_old, Q_new);
-    printAndSaveResults(Q_new, nx, LW);
+    printAndSaveResults(Q_new, NX, LW);
 
     /* Cálculo de Q via método Beam-Warmimg */
-    initializeArray(Q_old, nx, A, B, C, D, E);
-    initializeArray(Q_new, nx, A, B, C, D, E);
+    initializeArray(Q_old, NX, A, B, C, D, E);
+    initializeArray(Q_new, NX, A, B, C, D, E);
     calculateQ_BW(Q_old, Q_new);
-    printAndSaveResults(Q_new, nx, BW);
+    printAndSaveResults(Q_new, NX, BW);
 
     return 0;
 }
@@ -51,10 +51,10 @@ void listParameters()
 {
     puts("Parametros\n----------");
     puts("Constantes da equacao:");
-    printf("Delta_t = %f, Delta_x = %f, u_bar = %3.2e\n\n",
-           Delta_t, Delta_t, u_bar);
+    printf("DELTA_T = %f, DELTA_X = %f, U_BAR = %3.2e\n\n",
+           DELTA_T, DELTA_T, U_BAR);
     puts("Constantes da simulacao:");
-    printf("nx = %d, t_final = %f\n\n", nx, t_final);
+    printf("NX = %d, T_FINAL = %f\n\n", NX, T_FINAL);
 }
 
 /* Inicializa um array para um valor de entrada */
@@ -74,7 +74,7 @@ void initializeArray(double arr[], int len, double a, double b, double c,
     double x, s;
 
     for (i = 0; i < len; ++i) {
-        x = i * Delta_x;
+        x = i * DELTA_X;
         s = (x >= c && x <= d ? e : 0);
         arr[i] = exp( -a * ((x - b)*(x - b)) ) + s;
     }
@@ -86,7 +86,7 @@ void calculateQ_FTBS(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
+    int progress_incr = (T_FINAL/DELTA_T) * 5.0 / 100;
     double t = 0;
 
     puts("Calculando FTBS...");
@@ -108,8 +108,8 @@ void calculateQ_FTBS(double old[], double new[])
          *                  Para os volumes do centro 
          *               e na fronteira direita da malha
          */
-        for (i = 1; i < nx; ++i) {
-            new[i] = old[i] - u_bar*Delta_t/Delta_x * (
+        for (i = 1; i < NX; ++i) {
+            new[i] = old[i] - U_BAR*DELTA_T/DELTA_X * (
                          old[i] - old[i-1]
                      );
         }
@@ -122,16 +122,16 @@ void calculateQ_FTBS(double old[], double new[])
             fflush(stdout);
         }
 
-        /* Atualiza array de valores antigos com os novos para a próxima
-           iteração */
-        for (i = 0; i < nx; ++i) {
+        /* Atualiza array de valores antigos com os novos para o próximo
+           passo de tempo */
+        for (i = 0; i < NX; ++i) {
             old[i] = new[i];
         }
 
         /* Incrementa contador para cada 5% */
         ++progress_count;
 
-    } while ( (t += Delta_t) <= t_final );
+    } while ( (t += DELTA_T) <= T_FINAL );
 }
 
 /* Método Lax-Friedrichs */
@@ -139,7 +139,7 @@ void calculateQ_LF(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
+    int progress_incr = (T_FINAL/DELTA_T) * 5.0 / 100;
     double t = 0;
 
     puts("Calculando Lax-Friedrichs...");
@@ -154,7 +154,7 @@ void calculateQ_LF(double old[], double new[])
          */
         new[0] = (
                      old[1] + old[0]
-                 )/2 - u_bar*Delta_t/(2*Delta_x) * (
+                 )/2 - U_BAR*DELTA_T/(2*DELTA_X) * (
                      old[1] - old[0]
                  );
 
@@ -164,10 +164,10 @@ void calculateQ_LF(double old[], double new[])
          *                     ^     ^     ^     ^
          *             Para os volumes do centro da malha
          */
-        for (i = 1; i < nx - 1; ++i) {
+        for (i = 1; i < NX - 1; ++i) {
             new[i] = (
                          old[i+1] + old[i-1]
-                     )/2 - u_bar*Delta_t/(2*Delta_x) * (
+                     )/2 - U_BAR*DELTA_T/(2*DELTA_X) * (
                          old[i+1] - old[i-1]
                      );
         }
@@ -177,11 +177,11 @@ void calculateQ_LF(double old[], double new[])
          *            |==@==|==@==|==@==|==@==|==@==|==@==|
          *                                             ^
          *             Para o volume da fronteira direita
-         *            i possui valor de nx - 1 nesse ponto
+         *            i possui valor de NX - 1 nesse ponto
          */
         new[i] = (
                      old[i] + old[i-1]
-                 )/2 - u_bar*Delta_t/(2*Delta_x) * (
+                 )/2 - U_BAR*DELTA_T/(2*DELTA_X) * (
                      old[i] - old[i-1]
                  );
 
@@ -193,16 +193,16 @@ void calculateQ_LF(double old[], double new[])
             fflush(stdout);
         }
 
-        /* Atualiza array de valores antigos com os novos para a próxima
-           iteração */
-        for (i = 0; i < nx; ++i) {
+        /* Atualiza array de valores antigos com os novos para o próximo
+           passo de tempo */
+        for (i = 0; i < NX; ++i) {
             old[i] = new[i];
         }
 
         /* Incrementa contador para cada 5% */
         ++progress_count;
 
-    } while ( (t += Delta_t) <= t_final );
+    } while ( (t += DELTA_T) <= T_FINAL );
 }
 
 /* Método Lax-Wendroff */
@@ -210,7 +210,7 @@ void calculateQ_LW(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
+    int progress_incr = (T_FINAL/DELTA_T) * 5.0 / 100;
     double t = 0;
 
     puts("Calculando Lax-Wendroff...");
@@ -223,9 +223,9 @@ void calculateQ_LW(double old[], double new[])
          *            Para o volume da fronteira esquerda
          *        o índice 0 refere-se ao volume nº 1 da malha
          */
-        new[0] = old[0] - u_bar*Delta_t/(2*Delta_x) * (
+        new[0] = old[0] - U_BAR*DELTA_T/(2*DELTA_X) * (
                      old[1] - old[0]
-                 ) + (u_bar*u_bar)*(Delta_t*Delta_t)/(2*Delta_x*Delta_x) * (
+                 ) + (U_BAR*U_BAR)*(DELTA_T*DELTA_T)/(2*DELTA_X*DELTA_X) * (
                      old[1] - old[0]
                  );
 
@@ -235,10 +235,10 @@ void calculateQ_LW(double old[], double new[])
          *                     ^     ^     ^     ^
          *             Para os volumes do centro da malha
          */
-        for (i = 1; i < nx - 1; ++i) {
-            new[i] = old[i] - u_bar*Delta_t/(2*Delta_x) * (
+        for (i = 1; i < NX - 1; ++i) {
+            new[i] = old[i] - U_BAR*DELTA_T/(2*DELTA_X) * (
                          old[i+1] - old[i-1]
-                     ) + (u_bar*u_bar)*(Delta_t*Delta_t)/(2*Delta_x*Delta_x) * (
+                     ) + (U_BAR*U_BAR)*(DELTA_T*DELTA_T)/(2*DELTA_X*DELTA_X) * (
                          old[i+1] - 2*old[i] + old[i-1]
                      );
         }
@@ -248,11 +248,11 @@ void calculateQ_LW(double old[], double new[])
          *            |==@==|==@==|==@==|==@==|==@==|==@==|
          *                                             ^
          *             Para o volume da fronteira direita
-         *            i possui valor de nx - 1 nesse ponto
+         *            i possui valor de NX - 1 nesse ponto
          */
-        new[i] = old[i] - u_bar*Delta_t/(2*Delta_x) * (
+        new[i] = old[i] - U_BAR*DELTA_T/(2*DELTA_X) * (
                      old[i] - old[i-1]
-                 ) + (u_bar*u_bar)*(Delta_t*Delta_t)/(2*Delta_x*Delta_x) * (
+                 ) + (U_BAR*U_BAR)*(DELTA_T*DELTA_T)/(2*DELTA_X*DELTA_X) * (
                      old[i-1] - old[i]
                  );
 
@@ -264,16 +264,16 @@ void calculateQ_LW(double old[], double new[])
             fflush(stdout);
         }
 
-        /* Atualiza array de valores antigos com os novos para a próxima
-           iteração */
-        for (i = 0; i < nx; ++i) {
+        /* Atualiza array de valores antigos com os novos para o próximo
+           passo de tempo */
+        for (i = 0; i < NX; ++i) {
             old[i] = new[i];
         }
 
         /* Incrementa contador para cada 5% */
         ++progress_count;
 
-    } while ( (t += Delta_t) <= t_final );
+    } while ( (t += DELTA_T) <= T_FINAL );
 }
 
 /* Método Beam-Warming */
@@ -281,7 +281,7 @@ void calculateQ_BW(double old[], double new[])
 {
     int i;
     int progress = 0, progress_count = 0;
-    int progress_incr = (t_final/Delta_t) * 5.0 / 100;
+    int progress_incr = (T_FINAL/DELTA_T) * 5.0 / 100;
     double t = 0;
     
     puts("Calculando Beam-Warming...");
@@ -295,9 +295,9 @@ void calculateQ_BW(double old[], double new[])
          *        o índice 0 refere-se ao volume nº 1 da malha.
          *     O método de Lax-Wendroff é utilizado para este caso
          */
-        new[0] = old[0] - u_bar*Delta_t/(2*Delta_x) * (
+        new[0] = old[0] - U_BAR*DELTA_T/(2*DELTA_X) * (
                      old[1] - old[0]
-                 ) + (u_bar*u_bar)*(Delta_t*Delta_t)/(2*Delta_x*Delta_x) * (
+                 ) + (U_BAR*U_BAR)*(DELTA_T*DELTA_T)/(2*DELTA_X*DELTA_X) * (
                      old[1] - old[0]
                  );
 
@@ -307,9 +307,9 @@ void calculateQ_BW(double old[], double new[])
          *                     ^ 
          *         Para o volume logo após a fronteira esquerda
          */
-        new[1] = old[1] - 3 * u_bar*Delta_t/(2*Delta_x) * (
+        new[1] = old[1] - 3 * U_BAR*DELTA_T/(2*DELTA_X) * (
                      old[1] - old[0]
-                 ) + (u_bar*u_bar)*(Delta_t*Delta_t)/(2*Delta_x*Delta_x) * (
+                 ) + (U_BAR*U_BAR)*(DELTA_T*DELTA_T)/(2*DELTA_X*DELTA_X) * (
                      old[1] - old[0]
                  );
                  
@@ -320,10 +320,10 @@ void calculateQ_BW(double old[], double new[])
          *                  Para os volumes do centro 
          *               e na fronteira direita da malha
          */
-        for (i = 2; i < nx; ++i) {
-            new[i] = old[i] - u_bar*Delta_t/(2*Delta_x) * (
+        for (i = 2; i < NX; ++i) {
+            new[i] = old[i] - U_BAR*DELTA_T/(2*DELTA_X) * (
                          3*old[i] - 4*old[i-1] + old[i-2]
-                     ) + (u_bar*u_bar)*(Delta_t*Delta_t)/(2*Delta_x*Delta_x) * (
+                     ) + (U_BAR*U_BAR)*(DELTA_T*DELTA_T)/(2*DELTA_X*DELTA_X) * (
                          old[i] - 2*old[i-1] + old[i-2]
                      );
         }
@@ -336,16 +336,16 @@ void calculateQ_BW(double old[], double new[])
             fflush(stdout);
         }
 
-        /* Atualiza array de valores antigos com os novos para a próxima
-           iteração */
-        for (i = 0; i < nx; ++i) {
+        /* Atualiza array de valores antigos com os novos para o próximo
+           passo de tempo */
+        for (i = 0; i < NX; ++i) {
             old[i] = new[i];
         }
 
         /* Incrementa contador para cada 5% */
         ++progress_count;
 
-    } while ( (t += Delta_t) <= t_final );
+    } while ( (t += DELTA_T) <= T_FINAL );
 }
 
 /* Imprime na tela e salva os resultados num arquivo de saída */
@@ -372,7 +372,7 @@ void printAndSaveResults(double arr[], int len, int method)
     }
 
     /* Imprime os resultados no console */
-    printf("\n\nQ[%d] (tempo final: %.2fs) = [", nx, t_final);
+    printf("\n\nQ[%d] (tempo final: %.2fs) = [", NX, T_FINAL);
     for (i = 0; i < len - 1; ++i) {
         printf("%f, ", arr[i]);
     }
@@ -396,11 +396,11 @@ void printAndSaveResults(double arr[], int len, int method)
             "Delta_x=%f\n"
             "t_final=%f\n"
             "u_bar=%f\n",
-            nx, Delta_t, Delta_x, t_final, u_bar);
+            NX, DELTA_T, DELTA_X, T_FINAL, U_BAR);
     fputs("********************\n", results_file);
 
     for (i = 0; i < len; ++i) {
-        fprintf(results_file, "%f,%f\n", i * Delta_x, arr[i]);
+        fprintf(results_file, "%f,%f\n", i * DELTA_X, arr[i]);
     }
 
     fclose(results_file);   /* Fecha o arquivo */

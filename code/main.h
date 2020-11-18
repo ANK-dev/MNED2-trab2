@@ -5,13 +5,14 @@
 
 /*======================= Parâmetros a serem ajustados =======================*/
 
-#define Lx      (10.0)              /* Lx: comprimento do domínio (em m)      */
-#define nx      (200)               /* nx: número de células                  */
-#define Delta_x (Lx/nx)             /* Δx: largura de cada célula (em m)      */
-#define u_bar   (2.0)               /* ū: velocidade de escoamento (em m/s)   */
-#define t_final (1.0/3)             /* tempo final da simulação (em segundos) */
+#define LX      (10.0)              /* Lx: comprimento do domínio (em m)      */
+#define NX      (200)               /* nx: número de células                  */
+#define DELTA_X (LX/NX)             /* Δx: largura de cada célula (em m)      */
+#define U_BAR   (2.0)               /* ū: velocidade de escoamento (em m/s)   */
+#define T_FINAL (1.0)               /* tempo final da simulação (em segundos) */
+#define COURANT (0.9)               /* C: número de courant                   */
 
-#define Delta_t (0.9*Delta_x/u_bar) /* Δt: passo de tempo (em segundos) */
+#define DELTA_T (COURANT*DELTA_X/U_BAR) /* Δt: passo de tempo (em segundos)   */
 
 #define A (100.0)                   /*                                */
 #define B (1.5)                     /*                                */

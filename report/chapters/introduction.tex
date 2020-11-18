@@ -26,6 +26,43 @@ assim, a forma final equação da advecção a ser utilizada neste trabalho é
 O método dos volumes finitos tem como finalidade a discretização do domínio
 espacial. Este é subdividido em um conjunto de volumes finitos e as variáveis
 dependentes são determinadas como médias volumétricas sobre estes volumes,
-avaliadas nos centros dos mesmos. Neste trabalho, serão utilizados quatro
-métodos numéricos --- Forward Time-Backward Space (FTBS), Lax-Friedrichs,
-Lax-Wendroff e Beam-Warming --- visando resolver a equação da advecção.
+avaliadas nos centros dos mesmos. Partindo de um problema unidimensional, temos
+um caso particular da lei de conservação discretizada,
+\begin{equation}\label{lei de cons.}
+    Q_i^{n+1} = Q_i^n - \frac{\Delta t}{\Delta x}\left(
+        F_{i+1/2}^n - F_{i-1/2}^n
+    \right)
+\end{equation}
+onde $F$ indica o fluxo, definido como,
+\[
+    F_{i \pm 1/2}^n
+    \approx
+    \frac{1}{\Delta t} \int_{t_n}^{t_{n+1}} f(x_{i \pm 1/2},t)dt
+\]
+e $Q$ indica as concentrações na malha, definido como
+\[
+    Q_i^n \approx \frac{1}{\Delta x} \int_{x_{i-1/2}}^{i_{i+1/2}} \phi(x,t_n)dx
+\]
+
+Considerando que, para problemas hiperbólicos, a velocidade de propagação é
+finita, é possível definir uma representação para os fluxos nas faces do volume
+de controle em função de $Q^n$, isto é,
+\[
+    F_{i-1/2}^n = \mathcal{F}(Q_{i-1}^n, Q_i^n)
+\]
+\[
+    F_{i+1/2}^n = \mathcal{F}(Q_i^n, Q_{i+1}^n)
+\]
+Reescrevendo a Eq.\ \ref{lei de cons.} em função de $\mathcal{F}$ obtém-se,
+\begin{equation}
+    Q_i^{n+1} = Q_i^n - \frac{\Delta t}{\Delta x}\bigg[
+        \mathcal{F}(Q_i^n,Q_{i+1}^n) - \mathcal{F}(Q_{i-1}^n,Q_i^n)
+    \bigg]
+\end{equation}
+de forma que o valor futuro $Q_i^{n+1}$ depende explicitamente dos valores
+anteriores $Q^n$ na vizinhança do volume $i$ e das funções $\mathcal{F}$.
+
+Neste trabalho, serão utilizados quatro métodos numéricos baseados no método
+dos volumes finitos --- Forward Time-Backward Space (FTBS),\linebreak
+Lax-Friedrichs, Lax-Wendroff e Beam-Warming --- visando resolver a equação da
+advecção.

@@ -218,24 +218,31 @@ utilizada no primeiro trabalho,
 \begin{equation}
     \Delta t
     \leq
-    \frac{1}{\frac{2\alpha}{{\Delta x}^2} + \frac{\bar{u}}{\Delta x}}
+    C\left(
+        \frac{1}{\frac{2\alpha}{{\Delta x}^2} + \frac{\bar{u}}{\Delta x}}
+    \right)
 \end{equation}
 considerando que não há componente difusivo $\alpha$ na equação de advecção, o
 mesmo pode ser igualado a 0.
 \[
     \Delta t
     \leq
-    \frac{1}{\frac{2(0)}{{\Delta x}^2} + \frac{\bar{u}}{\Delta x}}
+    C\left(
+        \frac{1}{\frac{2(0)}{{\Delta x}^2} + \frac{\bar{u}}{\Delta x}}
+    \right)
 \]
 \[
-    \Delta t \leq \frac{1}{\frac{\bar{u}}{\Delta x}}
+    \Delta t \leq C\left( \frac{1}{\frac{\bar{u}}{\Delta x}} \right)
 \]
 \begin{equation}
-    \therefore\ \Delta t \leq \frac{\Delta x}{\bar{u}}
+    \therefore\ \Delta t \leq C\frac{\Delta x}{\bar{u}}
 \end{equation}
 obtém-se assim a condição de estabilidade para os métodos numéricos para a
-equação da advecção. Trata-se de um método \emph{condicionalmente estável}, ou
-seja que depende de uma faixa de valores para garantir a estabilidade de seu
+equação da advecção, onde $C$ trata-se do número de Courant: adota-se um valor
+de 0,9 para estre trabalho, visando satisfazer a condição de estabilidade e
+evitar possíveis erros numéricos durante o cálculo computacional. O método
+obtido trata-se de um método \emph{condicionalmente estável}, ou seja que
+depende de uma faixa de valores para garantir a estabilidade de seu
 funcionamento.
 
 \section{Programação}
@@ -310,9 +317,14 @@ for (i = 0; i < nx; ++i) {
 // Cálculo de Q, iterado ao longo do tempo
 do {
 
+    // Cálculo do volume da fronteira esquerda para o método Beam-Warming, que
+    // utiliza Lax-Wendroff apenas para este caso
+    if (method == BW) {leftBoudary(LW, 0);}
+
     // Cálculo do volume da fronteira esquerda, onde `leftBoundary' é a função
-    // da fronteira esquerda específica a cada método
-    Q_new[0] = leftBoundary(method, 0);
+    // da fronteira esquerda específica a cada método. Caso o método seja
+    // `Beam-Warming', calcula-se o volume logo após a fronteira.
+    Q_new[0] = method == BW ? leftBoundary(method, 1) : leftBoudary(method, 0);
 
     // Cálculo de volumes do centro da malha, onde `center' é a função do centro
     // da malha específica a cada método. Este laço começa em `i = 2' caso o
@@ -325,7 +337,8 @@ do {
     // da fronteira direita específica a cada método
     Q_new[i] = rightBoundary(method, i);
 
-    // Vetor `Q_old' é atualizado com valores do `Q_new' para a próxima iteração
+    // Vetor `Q_old' é atualizado com valores do `Q_new' para o próximo passo
+    // de tempo
     for (i = 0; i < nx; ++i) {
         Q_old[i] = Q_new[i];
     }
